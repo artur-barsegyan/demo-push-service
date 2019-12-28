@@ -4,7 +4,7 @@ local json = require('json')
 local function init(opts) -- luacheck: no unused args
     local httpd = cartridge.service_get('httpd')
     httpd:route({method = 'GET', path = '/get_push'}, function(req)
-        local res, err = queue.tube.tube_name:take({ timeout = 30 })
+        local res, err = queue.tube.tube_name:take(30)
         if err ~= nil then
             return {
                 status = 500,
